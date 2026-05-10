@@ -44,13 +44,13 @@ public partial class App : Application
             {
                 Content = new VerticalStackLayout
                 {
-                    VerticalOptions = Microsoft.Maui.Primitives.LayoutAlignment.Center,
+                    VerticalOptions = LayoutOptions.Center,
                     Children =
                     {
                         new Label
                         {
                             Text = "Collectly is running!",
-                            HorizontalOptions = Microsoft.Maui.Primitives.LayoutAlignment.Center,
+                            HorizontalOptions = LayoutOptions.Center,
                             FontSize = 24
                         }
                     }
