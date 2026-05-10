@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Collectly.ViewModels"
+             x:Class="Collectly.Views.Pages.AddEditCollectionPage"
+             x:DataType="vm:AddEditCollectionViewModel"
+             Title="{Binding Title}">
+
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="16">
+            <Label Text="Collection Name" FontSize="14" FontAttributes="Bold"/>
+            <Entry Text="{Binding Name}" Placeholder="e.g. Christmas List for Kia"
+                   MaxLength="200"/>
+
+            <Label Text="Recipient" FontSize="14" FontAttributes="Bold"/>
+            <Entry Text="{Binding RecipientName}" Placeholder="Who is this for?"
+                   MaxLength="100"/>
+
+            <Label Text="Event Type" FontSize="14" FontAttributes="Bold"/>
+            <Picker ItemsSource="{Binding EventTypes}"
+                    SelectedItem="{Binding EventType}"/>
+
+            <Label Text="Event Date" FontSize="14" FontAttributes="Bold"/>
+            <DatePicker Date="{Binding EventDate}" MinimumDate="01/01/2020"/>
+
+            <Label Text="Icon" FontSize="14" FontAttributes="Bold"/>
+            <Entry Text="{Binding Icon}" Placeholder="📦" MaxLength="4"/>
+
+            <Label Text="Notes" FontSize="14" FontAttributes="Bold"/>
+            <Editor Text="{Binding Notes}" Placeholder="Optional notes..."
+                    MaxLength="2000" HeightRequest="100"
+                    AutoSize="TextChanges"/>
+
+            <HorizontalStackLayout Spacing="8">
+                <Switch IsToggled="{Binding IsPrivate}"/>
+                <Label Text="Private Collection" VerticalOptions="Center"/>
+            </HorizontalStackLayout>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="12" Margin="0,20,0,0">
+                <Button Grid.Column="0" Text="Cancel"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                        TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                        Command="{Binding CancelCommand}"/>
+                <Button Grid.Column="1" Text="Save"
+                        BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"
+                        Command="{Binding SaveCommand}"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

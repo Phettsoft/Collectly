@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Collectly/Collectly.csproj" />
+  <Project Path="Collectly.Tests/Collectly.Tests.csproj" />
+</Solution>

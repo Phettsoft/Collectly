@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Collectly.ViewModels"
+             x:Class="Collectly.Views.Pages.SettingsPage"
+             x:DataType="vm:SettingsViewModel"
+             Title="{Binding Title}">
+
+    <ScrollView Padding="20">
+        <VerticalStackLayout Spacing="20">
+            <!-- Appearance -->
+            <Label Text="Appearance" FontSize="16" FontAttributes="Bold"/>
+            <Border Padding="16" StrokeShape="RoundRectangle 12"
+                    Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                    StrokeThickness="1">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Theme" FontSize="14"/>
+                    <Picker ItemsSource="{Binding ThemeModes}" SelectedItem="{Binding ThemeMode}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Preferences -->
+            <Label Text="Preferences" FontSize="16" FontAttributes="Bold"/>
+            <Border Padding="16" StrokeShape="RoundRectangle 12"
+                    Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                    StrokeThickness="1">
+                <VerticalStackLayout Spacing="12">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" Text="Default Currency" VerticalOptions="Center"/>
+                        <Picker Grid.Column="1" ItemsSource="{Binding Currencies}"
+                                SelectedItem="{Binding DefaultCurrency}" WidthRequest="100"/>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" Text="Notifications" VerticalOptions="Center"/>
+                        <Switch Grid.Column="1" IsToggled="{Binding NotificationsEnabled}"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Backup -->
+            <Label Text="Backup &amp; Restore" FontSize="16" FontAttributes="Bold"/>
+            <Border Padding="16" StrokeShape="RoundRectangle 12"
+                    Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                    StrokeThickness="1">
+                <VerticalStackLayout Spacing="12">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Grid.Column="0" Text="Auto Backup" VerticalOptions="Center"/>
+                        <Switch Grid.Column="1" IsToggled="{Binding AutoBackupEnabled}"/>
+                    </Grid>
+                    <Label Text="{Binding LastBackupDate, StringFormat='Last backup: {0}'}" FontSize="12"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                    <Grid ColumnDefinitions="*,*,*" ColumnSpacing="8">
+                        <Button Grid.Column="0" Text="Backup" Command="{Binding BackupNowCommand}"
+                                FontSize="12" Padding="8"/>
+                        <Button Grid.Column="1" Text="Export" Command="{Binding ExportCommand}"
+                                FontSize="12" Padding="8"/>
+                        <Button Grid.Column="2" Text="Import" Command="{Binding ImportCommand}"
+                                FontSize="12" Padding="8"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Debug -->
+            <Label Text="Developer" FontSize="16" FontAttributes="Bold"/>
+            <Border Padding="16" StrokeShape="RoundRectangle 12"
+                    Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                    StrokeThickness="1">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Grid.Column="0" Text="Debug Logging" VerticalOptions="Center"/>
+                    <Switch Grid.Column="1" IsToggled="{Binding DebugLoggingEnabled}"/>
+                </Grid>
+            </Border>
+
+            <!-- Version Info -->
+            <Border Padding="16" StrokeShape="RoundRectangle 12"
+                    Stroke="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray600}}"
+                    StrokeThickness="1">
+                <VerticalStackLayout Spacing="4" HorizontalOptions="Center">
+                    <Image Source="appicon.png" HeightRequest="48" WidthRequest="48"
+                           HorizontalOptions="Center" Margin="0,0,0,8"/>
+                    <Label Text="Collectly" FontSize="16" FontAttributes="Bold" HorizontalOptions="Center"/>
+                    <Label Text="{Binding AppVersionDisplay}" FontSize="14" HorizontalOptions="Center"
+                           TextColor="{StaticResource Primary}"/>
+                    <Label Text="{Binding BuildDateDisplay, StringFormat='Built: {0}'}" FontSize="12"
+                           HorizontalOptions="Center"
+                           TextColor="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray400}}"/>
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
