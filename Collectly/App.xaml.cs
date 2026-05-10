@@ -37,9 +37,30 @@ public partial class App : Application
         try
         {
             System.Diagnostics.Debug.WriteLine("[App] CreateWindow starting...");
-            var shell = new AppShell();
-            System.Diagnostics.Debug.WriteLine("[App] AppShell created.");
-            return new Window(shell);
+            Console.WriteLine("[App] CreateWindow starting...");
+            
+            // Test with a simple page first to rule out Shell/XAML issues
+            var page = new ContentPage
+            {
+                Content = new VerticalStackLayout
+                {
+                    VerticalOptions = Microsoft.Maui.Primitives.LayoutAlignment.Center,
+                    Children =
+                    {
+                        new Label
+                        {
+                            Text = "Collectly is running!",
+                            HorizontalOptions = Microsoft.Maui.Primitives.LayoutAlignment.Center,
+                            FontSize = 24
+                        }
+                    }
+                },
+                BackgroundColor = Colors.White
+            };
+            
+            System.Diagnostics.Debug.WriteLine("[App] Simple page created.");
+            Console.WriteLine("[App] Simple page created.");
+            return new Window(page);
         }
         catch (Exception ex)
         {
