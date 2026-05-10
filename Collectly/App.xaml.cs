@@ -23,15 +23,17 @@ public partial class App : Application
 
     protected override Window CreateWindow(IActivationState? activationState)
     {
-        return new Window(new AppShell());
+        var shell = new AppShell();
+        return new Window(shell);
     }
 
     private async Task InitializeAsync()
     {
         try
         {
+            await Task.Delay(100); // Allow UI to render first
             await _migrationService.RunMigrationsAsync();
-            await ApplySavedThemeAsync();
+            await MainThread.InvokeOnMainThreadAsync(ApplySavedThemeAsync);
         }
         catch (Exception ex)
         {
