@@ -13,13 +13,13 @@ public partial class App : Application
         {
             Content = new Label
             {
-                Text = "Collectly is running!",
+                Text = "COLLECTLY IS RUNNING!",
                 VerticalOptions = LayoutOptions.Center,
                 HorizontalOptions = LayoutOptions.Center,
-                FontSize = 24,
-                TextColor = Colors.Black
+                FontSize = 32,
+                TextColor = Colors.White
             },
-            BackgroundColor = Colors.White
+            BackgroundColor = Colors.DarkBlue
         };
         return new Window(page);
     }
