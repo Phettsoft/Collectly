@@ -3,16 +3,32 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:pages="clr-namespace:Collectly.Views.Pages"
        x:Class="Collectly.AppShell"
-       FlyoutBehavior="Disabled"
+       FlyoutBehavior="Flyout"
        Title="Collectly">
 
-    <TabBar>
-        <ShellContent Title="Home" Icon="{OnPlatform iOS=house, Default=''}"
-                      ContentTemplate="{DataTemplate pages:DashboardPage}" Route="dashboard"/>
-        <ShellContent Title="Settings" Icon="{OnPlatform iOS=gear, Default=''}"
-                      ContentTemplate="{DataTemplate pages:SettingsPage}" Route="settings"/>
-        <ShellContent Title="About" Icon="{OnPlatform iOS=info.circle, Default=''}"
-                      ContentTemplate="{DataTemplate pages:AboutPage}" Route="about"/>
-    </TabBar>
+    <Shell.FlyoutHeader>
+        <Grid Padding="20" HeightRequest="120"
+              BackgroundColor="{StaticResource Primary}">
+            <HorizontalStackLayout VerticalOptions="Center" Spacing="12">
+                <Image Source="appicon.png" HeightRequest="48" WidthRequest="48"/>
+                <VerticalStackLayout VerticalOptions="Center" Spacing="2">
+                    <Label Text="Collectly" FontSize="22" FontAttributes="Bold" TextColor="White"/>
+                    <Label Text="Your collections, organized." FontSize="13" TextColor="White" Opacity="0.8"/>
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <FlyoutItem Title="Dashboard">
+        <ShellContent ContentTemplate="{DataTemplate pages:DashboardPage}" Route="dashboard"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="Settings">
+        <ShellContent ContentTemplate="{DataTemplate pages:SettingsPage}" Route="settings"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="About">
+        <ShellContent ContentTemplate="{DataTemplate pages:AboutPage}" Route="about"/>
+    </FlyoutItem>
 
 </Shell>

@@ -11,10 +11,7 @@
 		<SingleProject>true</SingleProject>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<MauiXamlInflator Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) != 'ios'">SourceGen</MauiXamlInflator>
-
-		<!-- Disable linker on iOS debug to prevent XAML stripping -->
-		<MtouchLink Condition="'$(Configuration)' == 'Debug'">None</MtouchLink>
+		<MauiXamlInflator>SourceGen</MauiXamlInflator>
 
 		<!-- Display name -->
 		<ApplicationTitle>Collectly</ApplicationTitle>
